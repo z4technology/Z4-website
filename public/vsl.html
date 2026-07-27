@@ -52,8 +52,11 @@
   .scene-1 h1 span { color: #2563eb; }
   .scene-1 .sub { font-size: clamp(16px, 3vw, 24px); color: #94a3b8; margin-top: 16px; }
 
+  .scene-2 { background: url(https://images.pexels.com/photos/4482900/pexels-photo-4482900.jpeg?auto=compress&cs=tinysrgb&w=1200) center/cover; }
+  .scene-2::after { content:''; position:absolute; inset:0; background: rgba(15,23,42,0.82); }
+  .scene-2 .inner { position:relative; z-index:1; }
   .scene-2 h2 { font-size: clamp(28px, 6vw, 48px); font-weight: 800; color: white; }
-  .scene-2 .stat-row { display: flex; gap: 20px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
+  .scene-2 .stat-row { display: flex; gap: 20px; justify-content: center; margin-top: 30px; flex-wrap: wrap; position:relative; z-index:1; }
   .scene-2 .stat { text-align: center; min-width: 100px; }
   .scene-2 .stat .num { font-family: 'Inter', sans-serif; font-size: clamp(48px, 10vw, 80px); font-weight: 900; color: #ef4444; }
   .scene-2 .stat .label { font-size: clamp(12px, 2vw, 18px); color: #94a3b8; margin-top: 8px; }
@@ -66,8 +69,11 @@
   .scene-3 .bullet .b-num { font-family: 'Inter', sans-serif; font-size: 32px; font-weight: 900; color: #2563eb; }
   .scene-3 .bullet .b-label { font-size: 13px; color: #94a3b8; margin-top: 6px; }
 
+  .scene-4 { background: url(https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1200) center/cover; }
+  .scene-4::after { content:''; position:absolute; inset:0; background: rgba(15,23,42,0.85); }
+  .scene-4 .inner { position:relative; z-index:1; }
   .scene-4 h2 { font-size: clamp(26px, 5vw, 44px); font-weight: 800; color: white; margin-bottom: 30px; }
-  .scene-4 .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; max-width: 600px; margin: 0 auto; }
+  .scene-4 .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; max-width: 600px; margin: 0 auto; position:relative; z-index:1; }
   .scene-4 .feat { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 20px 16px; text-align: center; }
   .scene-4 .feat .f-icon { font-size: 28px; margin-bottom: 8px; }
   .scene-4 .feat .f-title { font-size: 14px; font-weight: 700; color: white; margin-bottom: 4px; }
