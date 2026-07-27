@@ -4,7 +4,7 @@ export const Route = createFileRoute("/ai-agent/thank-you")({ component: AIAgent
 
 function AIAgentThankYou() {
   return (
-    <div className="min-h-screen bg-slate-50 font-body flex items-center justify-center px-6">
+    <div className="min-h-screen bg-slate-50 font-body flex items-center justify-center px-6 pt-20">
       <div className="text-center max-w-md">
         {/* ──── SUCCESS ICON ──── */}
         <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8">

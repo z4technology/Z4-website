@@ -41,18 +41,8 @@ function AIAgentSignup() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-body">
-      {/* ──── NAV ──── */}
-      <header className="fixed top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/60">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <a href="/ai-agent" className="flex items-center gap-2">
-            <span className="text-xl font-extrabold tracking-tight text-slate-900">Z4</span>
-            <span className="text-[11px] font-bold tracking-[0.15em] text-slate-400 uppercase">Technology</span>
-          </a>
-        </div>
-      </header>
-
       {/* ──── SIGNUP FORM ──── */}
-      <section className="pt-32 pb-16 px-6">
+      <section className="pt-24 pb-16 px-6">
         <div className="mx-auto max-w-lg">
           <div className="text-center mb-10">
             <span className="inline-block text-[11px] font-bold tracking-[0.2em] text-blue-600 uppercase mb-4">

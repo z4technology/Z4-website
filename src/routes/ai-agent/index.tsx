@@ -37,24 +37,8 @@ const features = [
 function AIAgentLanding() {
   return (
     <div className="min-h-screen bg-white font-body">
-      {/* ──── NAV ──── */}
-      <header className="fixed top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/60">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <a href="/ai-agent" className="flex items-center gap-2">
-            <span className="text-xl font-extrabold tracking-tight text-slate-900">Z4</span>
-            <span className="text-[11px] font-bold tracking-[0.15em] text-slate-400 uppercase">Technology</span>
-          </a>
-          <Link
-            to="/ai-agent/signup"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all shadow-md shadow-blue-600/20 hover:shadow-lg hover:shadow-blue-600/30 hover:-translate-y-0.5"
-          >
-            Start Free Trial
-          </Link>
-        </div>
-      </header>
-
       {/* ──── HERO ──── */}
-      <section className="relative pt-32 pb-24 px-6 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
+      <section className="relative pt-24 pb-24 px-6 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
         <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-600 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-4xl text-center">
           <span className="inline-block text-[11px] font-bold tracking-[0.2em] text-blue-600 uppercase mb-6">
