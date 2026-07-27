@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Z4 Technology — AI Receptionist VSL</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    background: #0f172a; font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    min-height: 100vh; min-height: 100dvh; overflow-x: hidden;
+  }
+  #stage {
+    width: 100%; min-height: 100vh; min-height: 100dvh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .scene {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.4s ease;
+    pointer-events: none; padding: 20px;
+  }
+  .scene.active { opacity: 1; }
+  #progress { position: fixed; bottom: 0; left: 0; height: 4px; background: #2563eb; z-index: 20; width: 0; }
+  #watermark { position: fixed; top: 20px; right: 24px; z-index: 20; display: flex; align-items: center; gap: 8px; }
+  #watermark .logo { font-size: 22px; font-weight: 900; color: rgba(255,255,255,0.6); }
+  #watermark .tag { font-size: 9px; font-weight: 700; letter-spacing: 0.15em; color: rgba(255,255,255,0.3); text-transform: uppercase; }
+
+  #play-overlay {
+    position: fixed; inset: 0; z-index: 30;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(15,23,42,0.75);
+  }
+  #play-overlay.hidden { display: none; }
+  #play-btn {
+    width: 120px; height: 120px; border-radius: 50%;
+    background: #2563eb; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 20px 60px rgba(37,99,235,0.5);
+    -webkit-tap-highlight-color: transparent;
+  }
+  #play-btn:active { transform: scale(0.95); }
+  #play-btn svg { width: 44px; height: 44px; margin-left: 6px; }
+  #play-label { text-align: center; color: white; font-size: 16px; font-weight: 700; margin-top: 20px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .inner { text-align: center; max-width: 600px; padding: 20px; }
+
+  .scene-1 .hook-badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; color: #60a5fa; text-transform: uppercase; margin-bottom: 20px; }
+  .scene-1 h1 { font-family: 'Inter', system-ui, sans-serif; font-size: clamp(36px, 8vw, 72px); font-weight: 900; color: white; line-height: 1.08; }
+  .scene-1 h1 span { color: #2563eb; }
+  .scene-1 .sub { font-size: clamp(16px, 3vw, 24px); color: #94a3b8; margin-top: 16px; }
+
+  .scene-2 h2 { font-size: clamp(28px, 6vw, 48px); font-weight: 800; color: white; }
+  .scene-2 .stat-row { display: flex; gap: 20px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
+  .scene-2 .stat { text-align: center; min-width: 100px; }
+  .scene-2 .stat .num { font-family: 'Inter', sans-serif; font-size: clamp(48px, 10vw, 80px); font-weight: 900; color: #ef4444; }
+  .scene-2 .stat .label { font-size: clamp(12px, 2vw, 18px); color: #94a3b8; margin-top: 8px; }
+
+  .scene-3 .phone-icon { font-size: 80px; margin-bottom: 20px; }
+  .scene-3 h2 { font-size: clamp(28px, 6vw, 52px); font-weight: 900; color: white; }
+  .scene-3 h2 span { color: #22c55e; }
+  .scene-3 .bullets { margin-top: 30px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .scene-3 .bullet { background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.2); border-radius: 12px; padding: 16px 20px; text-align: center; }
+  .scene-3 .bullet .b-num { font-family: 'Inter', sans-serif; font-size: 32px; font-weight: 900; color: #2563eb; }
+  .scene-3 .bullet .b-label { font-size: 13px; color: #94a3b8; margin-top: 6px; }
+
+  .scene-4 h2 { font-size: clamp(26px, 5vw, 44px); font-weight: 800; color: white; margin-bottom: 30px; }
+  .scene-4 .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; max-width: 600px; margin: 0 auto; }
+  .scene-4 .feat { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 20px 16px; text-align: center; }
+  .scene-4 .feat .f-icon { font-size: 28px; margin-bottom: 8px; }
+  .scene-4 .feat .f-title { font-size: 14px; font-weight: 700; color: white; margin-bottom: 4px; }
+  .scene-4 .feat .f-desc { font-size: 12px; color: #94a3b8; }
+
+  .scene-5 h2 { font-size: clamp(26px, 5vw, 44px); font-weight: 800; color: white; margin-bottom: 30px; }
+  .scene-5 .price-card { background: white; border-radius: 20px; padding: 36px 48px; display: inline-block; box-shadow: 0 25px 80px rgba(37,99,235,0.3); }
+  .scene-5 .price { font-family: 'Inter', sans-serif; font-size: clamp(60px, 12vw, 96px); font-weight: 900; color: #0f172a; }
+  .scene-5 .per { font-size: 20px; color: #64748b; }
+  .scene-5 .trial-badge { display: inline-block; background: #22c55e; color: white; font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 100px; margin-top: 12px; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  .scene-6 h2 { font-size: clamp(30px, 7vw, 56px); font-weight: 900; color: white; }
+  .scene-6 h2 span { color: #2563eb; }
+  .scene-6 .cta-url { display: inline-block; font-family: 'Inter', sans-serif; font-size: clamp(24px, 5vw, 42px); font-weight: 800; color: #60a5fa; margin-top: 24px; }
+  .scene-6 .cta-sub { font-size: clamp(14px, 2.5vw, 20px); color: #94a3b8; margin-top: 16px; }
+
+  .scene-7 .logo-big { font-size: clamp(40px, 8vw, 64px); font-weight: 900; color: white; }
+  .scene-7 .tagline { font-size: clamp(14px, 3vw, 22px); color: #64748b; margin-top: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .scene-7 .location { font-size: clamp(13px, 2.5vw, 18px); color: #475569; margin-top: 16px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="watermark">
+    <span class="logo">Z4</span>
+    <span class="tag">Technology</span>
+  </div>
+  <div id="progress"></div>
+
+  <div id="play-overlay">
+    <div style="text-align:center">
+      <button id="play-btn" onclick="startVSL()">
+        <svg viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+      </button>
+      <div id="play-label">Tap to Play</div>
+    </div>
+  </div>
+
+  <div class="scene scene-1 active" id="s1">
+    <div class="inner">
+      <div class="hook-badge">AI-Powered Virtual Receptionist</div>
+      <h1>Stop Losing $5,000 Jobs<br><span>to Voicemail</span></h1>
+      <p class="sub">Every unanswered call is a customer who found someone else.</p>
+    </div>
+  </div>
+  <div class="scene scene-2" id="s2">
+    <div class="inner">
+      <h2>Missed Calls = Lost Revenue</h2>
+      <div class="stat-row">
+        <div class="stat"><div class="num">62%</div><div class="label">hang up on voicemail</div></div>
+        <div class="stat"><div class="num">$5k</div><div class="label">avg job value lost</div></div>
+        <div class="stat"><div class="num">24/7</div><div class="label">phone not answered</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene scene-3" id="s3">
+    <div class="inner">
+      <div class="phone-icon">📞</div>
+      <h2>AI Answers in <span>3 Rings</span></h2>
+      <div class="bullets">
+        <div class="bullet"><div class="b-num">24/7</div><div class="b-label">Always On</div></div>
+        <div class="bullet"><div class="b-num">Human</div><div class="b-label">Voice</div></div>
+        <div class="bullet"><div class="b-num">Instant</div><div class="b-label">Booking</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene scene-4" id="s4">
+    <div class="inner">
+      <h2>More Than Answering Calls</h2>
+      <div class="feature-grid">
+        <div class="feat"><div class="f-icon">🎙️</div><div class="f-title">ElevenLabs</div><div class="f-desc">Natural voice</div></div>
+        <div class="feat"><div class="f-icon">📅</div><div class="f-title">Calendar</div><div class="f-desc">Google + Square</div></div>
+        <div class="feat"><div class="f-icon">💬</div><div class="f-title">SMS</div><div class="f-desc">Reminders</div></div>
+        <div class="feat"><div class="f-icon">⚡</div><div class="f-title">15-Min</div><div class="f-desc">Setup</div></div>
+        <div class="feat"><div class="f-icon">🌐</div><div class="f-title">Language</div><div class="f-desc">EN + ES</div></div>
+        <div class="feat"><div class="f-icon">📊</div><div class="f-title">Dashboard</div><div class="f-desc">Live view</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene scene-5" id="s5">
+    <div class="inner">
+      <h2>Transparent Pricing</h2>
+      <div class="price-card">
+        <div class="price">$297<span class="per">/mo</span></div>
+        <div class="trial-badge">7-Day Free Trial</div>
+        <p style="color:#64748b;font-size:14px;margin-top:12px;">No credit card · Cancel anytime</p>
+      </div>
+    </div>
+  </div>
+  <div class="scene scene-6" id="s6">
+    <div class="inner">
+      <h2>Ready to Stop<br><span>Missing Calls?</span></h2>
+      <div class="cta-url">Z4Technology.com/AI-Agent</div>
+      <p class="cta-sub">Free trial · No credit card</p>
+    </div>
+  </div>
+  <div class="scene scene-7" id="s7">
+    <div class="inner">
+      <div class="logo-big">Z4 Technology</div>
+      <div class="tagline">AI-Powered Operations</div>
+      <div class="location">Knoxville, Tennessee</div>
+    </div>
+  </div>
+</div>
+
+<audio id="audio" src="/vsl/voiceover.mp3" preload="auto"></audio>
+
+<script>
+const scenes = document.querySelectorAll('.scene');
+const audio = document.getElementById('audio');
+const progress = document.getElementById('progress');
+const overlay = document.getElementById('play-overlay');
+
+const cues = [
+  { scene: 0, at: 0 }, { scene: 1, at: 8 }, { scene: 2, at: 18 },
+  { scene: 3, at: 32 }, { scene: 4, at: 45 }, { scene: 5, at: 58 }, { scene: 6, at: 68 }
+];
+
+let currentScene = 0;
+function showScene(i) { scenes.forEach((s, j) => s.classList.toggle('active', j === i)); currentScene = i; }
+
+function startVSL() {
+  overlay.classList.add('hidden');
+  audio.play().catch(() => {
+    overlay.classList.remove('hidden');
+    document.getElementById('play-label').textContent = 'Tap Again';
+  });
+}
+
+audio.addEventListener('timeupdate', () => {
+  progress.style.width = (audio.currentTime / (audio.duration || 75)) * 100 + '%';
+  for (let i = cues.length-1; i >= 0; i--) {
+    if (audio.currentTime >= cues[i].at) { if (currentScene !== i) showScene(i); break; }
+  }
+});
+audio.addEventListener('ended', () => { progress.style.width = '100%'; });
+</script>
+</body>
+</html>
