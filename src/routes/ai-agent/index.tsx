@@ -16,7 +16,7 @@ const benefits = [
   {
     icon: "📅",
     title: "Calendar Integration",
-    desc: "Books appointments directly into your Google Calendar or Square — no double-booking, no manual entry.",
+    desc: "Books appointments directly into your calendar — Google, Outlook, Square, and more. No double-booking, no manual entry.",
   },
   {
     icon: "⚡",
@@ -118,7 +118,7 @@ function AIAgentLanding() {
                 <p className="text-sm text-slate-500 mt-2 font-medium">7-day free trial. Cancel anytime.</p>
               </div>
               <div className="space-y-3">
-                {["Unlimited calls & bookings", "Custom voice training", "Google Calendar + Square sync", "SMS reminders included", "Live conversation dashboard", "Email + phone support"].map((item) => (
+                {["Unlimited calls & bookings", "Custom voice training", "Google, Outlook, Square & more sync", "SMS reminders included", "Live conversation dashboard", "Email + phone support"].map((item) => (
                   <div key={item} className="flex items-center gap-3 text-sm text-slate-600">
                     <svg className="w-4 h-4 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
