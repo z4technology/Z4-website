@@ -55,8 +55,8 @@ function ContactPage() {
             </div>
             <div>
               <h3 className="text-[11px] font-extrabold tracking-[0.12em] text-slate-400 uppercase mb-1">Phone</h3>
-              <a href="tel:+18655001234" className="text-blue-600 font-semibold hover:underline">
-                (865) 500-1234
+              <a href="tel:+18653240402" className="text-blue-600 font-semibold hover:underline">
+                (865) 324-0402
               </a>
             </div>
             <div>
