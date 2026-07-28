@@ -37,6 +37,7 @@ function RootDocument({ children }: { children: ReactNode }) {
       <body>
         <NavBar />
         <main>{children}</main>
+        <Footer />
         <Scripts />
       </body>
     </html>
@@ -59,5 +60,44 @@ function NavBar() {
         </nav>
       </div>
     </header>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-slate-100 bg-slate-50">
+      <div className="mx-auto max-w-7xl px-6 py-12">
+        <div className="grid gap-8 sm:grid-cols-3">
+          <div>
+            <h3 className="text-[10px] font-extrabold tracking-[0.15em] text-slate-400 uppercase mb-3">Company</h3>
+            <div className="flex flex-col gap-2">
+              <Link to="/" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">Home</Link>
+              <Link to="/ai-agent" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">AI Receptionist</Link>
+              <Link to="/contact" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">Contact</Link>
+            </div>
+          </div>
+          <div>
+            <h3 className="text-[10px] font-extrabold tracking-[0.15em] text-slate-400 uppercase mb-3">Legal</h3>
+            <div className="flex flex-col gap-2">
+              <Link to="/terms" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">Terms & Conditions</Link>
+              <Link to="/privacy" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">Privacy Policy</Link>
+            </div>
+          </div>
+          <div>
+            <h3 className="text-[10px] font-extrabold tracking-[0.15em] text-slate-400 uppercase mb-3">Z4 Technology</h3>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              AI-powered business operations.<br />
+              Knoxville, TN<br />
+              <a href="mailto:team@z4technology.com" className="text-blue-600 hover:underline">team@z4technology.com</a>
+            </p>
+          </div>
+        </div>
+        <div className="mt-10 pt-6 border-t border-slate-200">
+          <p className="text-[10px] text-slate-400 text-center">
+            &copy; {new Date().getFullYear()} Z4 Technology. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 }
