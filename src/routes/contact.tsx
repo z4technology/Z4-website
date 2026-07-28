@@ -6,6 +6,7 @@ export const Route = createFileRoute("/contact")({ component: ContactPage });
 
 function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", business: "", message: "" });
+  const [smsOptIn, setSmsOptIn] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -24,6 +25,7 @@ function ContactPage() {
       phone: form.phone || null,
       business_name: form.business || null,
       message: form.message,
+      sms_opt_in: smsOptIn,
     });
 
     if (error) {
@@ -32,6 +34,7 @@ function ContactPage() {
     } else {
       setStatus("sent");
       setForm({ name: "", email: "", phone: "", business: "", message: "" });
+      setSmsOptIn(false);
     }
   };
 
@@ -141,6 +144,19 @@ function ContactPage() {
                     {errorMsg || "Something went wrong. Please try again."}
                   </div>
                 )}
+
+                <label className="flex items-start gap-3 cursor-pointer group">
+                  <input
+                    type="checkbox"
+                    checked={smsOptIn}
+                    onChange={(e) => setSmsOptIn(e.target.checked)}
+                    className="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                  />
+                  <span className="text-xs text-slate-500 leading-relaxed group-hover:text-slate-700 transition-colors">
+                    By checking this box, I consent to receive SMS messages from Z4 Technology regarding my inquiry, account updates, and service information. Message frequency varies. Reply STOP to unsubscribe at any time. Message and data rates may apply.{" "}
+                    <a href="/privacy" className="text-blue-600 underline hover:text-blue-800">Privacy Policy</a>
+                  </span>
+                </label>
 
                 <button
                   type="submit"

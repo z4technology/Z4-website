@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS public.contact_submissions (
   phone TEXT,
   business_name TEXT,
   message TEXT NOT NULL,
+  sms_opt_in BOOLEAN DEFAULT FALSE NOT NULL,
   created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL,
   read BOOLEAN DEFAULT FALSE NOT NULL
 );
@@ -36,3 +37,6 @@ CREATE POLICY "allow_auth_update" ON public.contact_submissions
   TO authenticated
   USING (true)
   WITH CHECK (true);
+
+-- Add sms_opt_in column to existing table if it doesn't already exist
+ALTER TABLE public.contact_submissions ADD COLUMN IF NOT EXISTS sms_opt_in BOOLEAN DEFAULT FALSE NOT NULL;
