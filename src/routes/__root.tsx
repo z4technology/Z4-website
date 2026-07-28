@@ -49,8 +49,7 @@ function NavBar() {
     <header className="fixed top-0 z-50 w-full nav-glass">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-2">
-          <span className="text-xl font-black tracking-tight text-slate-900">Z4</span>
-          <span className="hidden sm:inline text-[10px] font-bold tracking-[0.15em] text-slate-400 uppercase">Technology</span>
+          <img src="/logo.png" alt="Z4 Technology" className="h-8 w-auto" />
         </Link>
         <nav className="flex items-center gap-6">
           <Link to="/" className="text-[11px] font-semibold tracking-[0.08em] text-slate-500 hover:text-slate-900 uppercase transition-colors">Home</Link>
