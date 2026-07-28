@@ -31,7 +31,7 @@ function TermsPage() {
           <section>
             <h2 className="text-lg font-extrabold text-slate-800 mb-3">3. Cancellation</h2>
             <p className="text-slate-600">
-              You may cancel your subscription at any time through your account dashboard or by contacting us at team@z4technology.com.
+              You may cancel your subscription at any time through your account dashboard or by contacting us at support@z4technology.com.
               Cancellation takes effect at the end of the current billing period. No refunds are provided for partial months.
               For performance-based engagements, either party may terminate with 30 days' written notice.
             </p>
@@ -77,7 +77,7 @@ function TermsPage() {
             <p className="text-slate-600">
               For questions about these Terms, contact us at:
               <br />
-              <strong>Email:</strong> team@z4technology.com
+              <strong>Email:</strong> support@z4technology.com
               <br />
               <strong>Address:</strong> Knoxville, TN
             </p>

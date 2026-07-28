@@ -88,7 +88,7 @@ function Footer() {
             <p className="text-xs text-slate-400 leading-relaxed">
               AI-powered business operations.<br />
               Knoxville, TN<br />
-              <a href="mailto:team@z4technology.com" className="text-blue-600 hover:underline">team@z4technology.com</a>
+              <a href="mailto:support@z4technology.com" className="text-blue-600 hover:underline">support@z4technology.com</a>
             </p>
           </div>
         </div>

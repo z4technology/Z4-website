@@ -109,7 +109,7 @@ function PrivacyPage() {
             <p className="text-slate-600">
               For privacy-related questions or to exercise your data rights, contact us at:
               <br />
-              <strong>Email:</strong> privacy@z4technology.com
+              <strong>Email:</strong> support@z4technology.com
               <br />
               <strong>Address:</strong> Knoxville, TN
             </p>

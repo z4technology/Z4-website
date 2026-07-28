@@ -46,8 +46,8 @@ function ContactPage() {
           <div className="md:col-span-2 space-y-6">
             <div>
               <h3 className="text-[11px] font-extrabold tracking-[0.12em] text-slate-400 uppercase mb-1">Email</h3>
-              <a href="mailto:team@z4technology.com" className="text-blue-600 font-semibold hover:underline">
-                team@z4technology.com
+              <a href="mailto:support@z4technology.com" className="text-blue-600 font-semibold hover:underline">
+                support@z4technology.com
               </a>
             </div>
             <div>
