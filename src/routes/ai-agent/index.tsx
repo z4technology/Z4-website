@@ -60,7 +60,13 @@ function AIAgentLanding() {
             >
               Start Free Trial <span className="text-blue-200">→</span>
             </Link>
-            <p className="text-xs text-slate-400 font-medium">No credit card required</p>
+            <a
+              href="/vsl.html"
+              className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border-2 border-slate-200 hover:border-blue-300 px-8 py-4 rounded-full text-sm font-bold tracking-wider uppercase transition-all"
+            >
+              ▶ Watch Demo
+            </a>
+            <p className="text-xs text-slate-400 font-medium w-full sm:w-auto text-center">No credit card required</p>
           </div>
         </div>
       </section>
