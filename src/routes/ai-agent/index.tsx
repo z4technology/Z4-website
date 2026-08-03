@@ -92,6 +92,30 @@ function AIAgentLanding() {
         </div>
       </section>
 
+      {/* ──── VIDEO DEMO ──── */}
+      <section className="py-24 px-6 bg-white border-t border-slate-100">
+        <div className="mx-auto max-w-4xl text-center">
+          <span className="section-label">See It In Action</span>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+            Watch How Z4 Automates Your Business
+          </h2>
+          <p className="text-slate-500 mb-10 max-w-2xl mx-auto">
+            From instant lead response to automated follow-ups — see all five AI workflows in 30 seconds.
+          </p>
+          <div className="relative mx-auto max-w-3xl rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-200">
+            <video
+              controls
+              className="w-full"
+              poster="/logo.png"
+              preload="metadata"
+            >
+              <source src="/product-demo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </section>
+
       {/* ──── FEATURES ──── */}
       <section className="py-24 px-6 bg-slate-50">
         <div className="mx-auto max-w-6xl">
