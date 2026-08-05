@@ -153,7 +153,7 @@ function ContactPage() {
                     className="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
                   />
                   <span className="text-xs text-slate-500 leading-relaxed group-hover:text-slate-700 transition-colors">
-                    By checking this box, I consent to receive SMS messages from Z4 Technology regarding my inquiry, account updates, and service information. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. See our Privacy Policy.{" "}
+                    By checking this box, I consent to receive SMS messages from Z4 Technology regarding my inquiry, account updates, and service information. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. See our {" "}
                     <a href="/privacy" className="text-blue-600 underline hover:text-blue-800">Privacy Policy</a>
                   </span>
                 </label>
