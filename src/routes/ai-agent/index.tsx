@@ -54,12 +54,12 @@ function AIAgentLanding() {
             <strong className="text-slate-700">$297/mo. 7-day free trial.</strong>
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              to="/ai-agent/signup"
+            <a
+              href="/ai-agent/signup.html"
               className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-sm font-bold tracking-wider uppercase transition-all shadow-xl shadow-blue-600/25 hover:shadow-2xl hover:shadow-blue-600/30 hover:-translate-y-0.5"
             >
               Start Free Trial <span className="text-blue-200">→</span>
-            </Link>
+            </a>
             <a
               href="/vsl.html"
               className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border-2 border-slate-200 hover:border-blue-300 px-8 py-4 rounded-full text-sm font-bold tracking-wider uppercase transition-all"
@@ -133,12 +133,12 @@ function AIAgentLanding() {
                   </div>
                 ))}
               </div>
-              <Link
-                to="/ai-agent/signup"
+              <a
+                href="/ai-agent/signup.html"
                 className="btn-primary w-full mt-8"
               >
                 Start Free Trial
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -153,12 +153,12 @@ function AIAgentLanding() {
           <p className="text-lg text-slate-300 mb-10 max-w-xl mx-auto">
             Join businesses across Knoxville who never send a customer to voicemail again.
           </p>
-          <Link
-            to="/ai-agent/signup"
+          <a
+            href="/ai-agent/signup.html"
             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-sm font-bold tracking-wider uppercase transition-all shadow-xl shadow-blue-600/25 hover:-translate-y-0.5"
           >
             Start Your Free Trial <span className="text-blue-200">→</span>
-          </Link>
+          </a>
           <p className="text-xs text-slate-500 mt-4">$297/mo after trial. Cancel anytime.</p>
         </div>
       </section>

@@ -82,9 +82,9 @@ function Z4Home() {
             <strong className="text-slate-700">you only pay when we deliver results.</strong>
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-in delay-300">
-            <Link to="/ai-agent/signup" className="btn-primary shadow-xl shadow-blue-600/25 text-sm">
+            <a href="/ai-agent/signup.html" className="btn-primary shadow-xl shadow-blue-600/25 text-sm">
               Get Started →
-            </Link>
+            </a>
             <a href="#services" className="btn-outline text-sm">
               See Our Services
             </a>
@@ -211,9 +211,9 @@ function Z4Home() {
           <p className="text-lg text-slate-300 mb-10 max-w-xl mx-auto">
             Let's find the highest-ROI AI opportunity in your business. Free consultation, no obligation.
           </p>
-          <Link to="/ai-agent/signup" className="btn-primary bg-blue-600 hover:bg-blue-500 shadow-xl shadow-blue-600/30 text-sm">
+          <a href="/ai-agent/signup.html" className="btn-primary bg-blue-600 hover:bg-blue-500 shadow-xl shadow-blue-600/30 text-sm">
             Start Free Trial
-          </Link>
+          </a>
           <p className="text-xs text-slate-500 mt-5">7-day free trial · Cancel anytime</p>
         </div>
       </section>
