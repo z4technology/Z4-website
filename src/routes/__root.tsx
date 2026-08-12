@@ -55,7 +55,7 @@ function NavBar() {
           <Link to="/" className="text-[11px] font-semibold tracking-[0.08em] text-slate-500 hover:text-slate-900 uppercase transition-colors">Home</Link>
           <a href="/#services" className="text-[11px] font-semibold tracking-[0.08em] text-slate-500 hover:text-slate-900 uppercase transition-colors">Services</a>
           <Link to="/ai-agent" className="text-[11px] font-semibold tracking-[0.08em] text-blue-600 hover:text-blue-700 uppercase transition-colors">AI Agent</Link>
-          <Link to="/ai-agent/signup" className="btn-primary text-[10px] py-2 px-4">Get Started</Link>
+          <a href="/ai-agent/signup.html" className="btn-primary text-[10px] py-2 px-4">Get Started</a>
         </nav>
       </div>
     </header>
@@ -72,7 +72,7 @@ function Footer() {
             <div className="flex flex-col gap-2">
               <Link to="/" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">Home</Link>
               <Link to="/ai-agent" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">AI Receptionist</Link>
-              <Link to="/contact" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">Contact</Link>
+              <a href="/contact.html" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">Contact</a>
             </div>
           </div>
           <div>

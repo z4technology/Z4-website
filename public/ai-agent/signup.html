@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Your AI Receptionist | Z4 Technology</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      /* Z4 Technology design system — static page (no React) */
+      :root {
+        --blue-50: #eff6ff; --blue-100: #dbeafe; --blue-200: #bfdbfe;
+        --blue-500: #3b82f6; --blue-600: #2563eb; --blue-700: #1d4ed8;
+        --slate-50: #f8fafc; --slate-100: #f1f5f9; --slate-200: #e2e8f0;
+        --slate-400: #94a3b8; --slate-500: #64748b; --slate-600: #475569;
+        --slate-700: #334155; --slate-800: #1e293b; --slate-900: #0f172a;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+      body {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        font-weight: 400; color: var(--slate-900); background: var(--slate-50); min-height: 100vh;
+        display: flex; flex-direction: column;
+      }
+      h1, h2, h3 { font-family: 'Inter', system-ui, sans-serif; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+      a { text-decoration: none; }
+
+      /* ── Glass nav ── */
+      .nav-glass {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 50; width: 100%;
+        background: rgba(255,255,255,0.92); backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-bottom: 0.5px solid rgba(37,99,235,0.08);
+      }
+      .nav-inner { max-width: 80rem; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; }
+      .nav-logo { display: flex; align-items: center; gap: 0.5rem; }
+      .nav-logo img { height: 2rem; width: auto; }
+      .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+      .nav-link { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate-500); transition: color .2s; }
+      .nav-link:hover { color: var(--slate-900); }
+      .nav-link.active { color: var(--blue-600); }
+
+      /* ── Buttons ── */
+      .btn-primary {
+        display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+        padding: .875rem 2rem; font-size: .8125rem; font-weight: 600; letter-spacing: .06em;
+        text-transform: uppercase; color: #fff; background: var(--blue-600); border: none;
+        border-radius: 9999px; cursor: pointer;
+        transition: all .35s cubic-bezier(.25,.46,.45,.94);
+        box-shadow: 0 2px 8px rgba(37,99,235,.2), 0 1px 2px rgba(37,99,235,.12);
+      }
+      .btn-primary:hover { background: var(--blue-700); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(37,99,235,.3); }
+      .btn-primary:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+      .btn-primary.block { width: 100%; }
+
+      /* ── Layout ── */
+      main { flex: 1; }
+      .page { max-width: 32rem; margin: 0 auto; padding: 7rem 1.5rem 4rem; }
+      .signup-head { text-align: center; margin-bottom: 2.5rem; }
+      .eyebrow { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue-600); margin-bottom: 1rem; }
+      h1 { font-size: 1.875rem; color: var(--slate-900); letter-spacing: -0.025em; margin-bottom: .75rem; }
+      .signup-sub { color: var(--slate-500); font-weight: 500; }
+
+      /* ── Card ── */
+      .card {
+        background: #fff; border: 0.5px solid rgba(37,99,235,0.06); border-radius: .75rem;
+        box-shadow: 0 1px 2px rgba(15,23,42,.02), 0 4px 8px rgba(15,23,42,.03);
+        transition: all .4s cubic-bezier(.25,.46,.45,.94);
+      }
+      .card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(15,23,42,.03), 0 12px 24px rgba(15,23,42,.06); border-color: rgba(37,99,235,.12); }
+      .price-card { padding: 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; }
+      .price-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue-600); }
+      .price-amount { font-size: 1.5rem; font-weight: 800; color: var(--slate-900); margin-top: .25rem; }
+      .price-amount span { font-size: 1rem; font-weight: 500; color: var(--slate-400); }
+      .trial-badge { display: inline-block; background: #dcfce7; color: #15803d; font-size: 10px; font-weight: 700; padding: .25rem .75rem; border-radius: 9999px; text-transform: uppercase; letter-spacing: .05em; }
+      .no-cc { font-size: 10px; color: var(--slate-400); margin-top: .5rem; font-weight: 500; text-align: right; }
+
+      /* ── Form ── */
+      .form-card { padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+      label.field-label { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--slate-500); margin-bottom: .5rem; }
+      input[type="text"], input[type="email"], input[type="tel"] {
+        width: 100%; border: 1px solid var(--slate-200); background: var(--slate-50);
+        border-radius: .75rem; padding: .75rem 1rem; font-size: .875rem; font-family: inherit;
+        color: var(--slate-900); transition: border-color .2s, box-shadow .2s;
+      }
+      input::placeholder { color: var(--slate-400); }
+      input:focus {
+        outline: none; border-color: var(--blue-400);
+        box-shadow: 0 0 0 2px rgba(59,130,246,.3);
+      }
+      .status-error { background: #fef2f2; color: #dc2626; padding: .75rem 1rem; border-radius: .75rem; font-size: .75rem; font-weight: 500; }
+      .fine-print { font-size: 10px; color: var(--slate-400); text-align: center; font-weight: 500; padding-top: .5rem; }
+      .back-link { display: block; text-align: center; margin-top: 1.5rem; font-size: .75rem; color: var(--slate-400); transition: color .2s; }
+      .back-link:hover { color: var(--slate-600); }
+
+      /* ── Footer ── */
+      footer { border-top: 1px solid var(--slate-100); background: var(--slate-50); }
+      .footer-inner { max-width: 80rem; margin: 0 auto; padding: 3rem 1.5rem; }
+      .footer-grid { display: grid; gap: 2rem; }
+      @media (min-width: 640px) { .footer-grid { grid-template-columns: repeat(3, 1fr); } }
+      .footer-h { font-size: 10px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--slate-400); margin-bottom: .75rem; }
+      .footer-col { display: flex; flex-direction: column; gap: .5rem; }
+      .footer-link { font-size: .75rem; color: var(--slate-500); transition: color .2s; }
+      .footer-link:hover { color: var(--slate-900); }
+      .footer-meta { font-size: .75rem; color: var(--slate-400); line-height: 1.625; }
+      .footer-meta a { color: var(--blue-600); }
+      .footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--slate-200); text-align: center; }
+      .footer-copy { font-size: 10px; color: var(--slate-400); }
+    </style>
+  </head>
+  <body>
+    <header class="nav-glass">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <img src="/logo.png" alt="Z4 Technology" />
+        </a>
+        <nav class="nav-links">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/#services" class="nav-link">Services</a>
+          <a href="/ai-agent" class="nav-link active">AI Agent</a>
+          <a href="/ai-agent/signup.html" class="btn-primary" style="font-size:10px; padding:.5rem 1rem;">Get Started</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="page">
+        <div class="signup-head">
+          <span class="eyebrow">Start Your Free Trial</span>
+          <h1>Get Your AI Receptionist</h1>
+          <p class="signup-sub">We'll reach out within 24 hours to set you up.</p>
+        </div>
+
+        <div class="card price-card">
+          <div>
+            <p class="price-label">Pricing</p>
+            <p class="price-amount">$297<span>/mo</span></p>
+          </div>
+          <div style="text-align:right;">
+            <span class="trial-badge">7-Day Free Trial</span>
+            <p class="no-cc">No credit card required</p>
+          </div>
+        </div>
+
+        <div class="card form-card">
+          <form id="signupForm" novalidate>
+            <div>
+              <label class="field-label" for="name">Full Name</label>
+              <input id="name" name="name" type="text" required placeholder="John Smith" />
+            </div>
+            <div>
+              <label class="field-label" for="email">Email Address</label>
+              <input id="email" name="email" type="email" required placeholder="john@company.com" />
+            </div>
+            <div>
+              <label class="field-label" for="phone">Phone Number</label>
+              <input id="phone" name="phone" type="tel" required placeholder="(865) 555-0123" />
+            </div>
+            <div>
+              <label class="field-label" for="company">Company Name</label>
+              <input id="company" name="company" type="text" required placeholder="Your Business, LLC" />
+            </div>
+
+            <div id="errorBox" class="status-error" style="display:none;"></div>
+
+            <button type="submit" class="btn-primary block" id="submitBtn">Start Free Trial</button>
+            <p class="fine-print">By signing up, you agree to our Terms of Service and Privacy Policy.</p>
+          </form>
+        </div>
+
+        <a href="/ai-agent" class="back-link">&larr; Back to AI Receptionist</a>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div>
+            <p class="footer-h">Company</p>
+            <div class="footer-col">
+              <a href="/" class="footer-link">Home</a>
+              <a href="/ai-agent" class="footer-link">AI Receptionist</a>
+              <a href="/contact.html" class="footer-link">Contact</a>
+            </div>
+          </div>
+          <div>
+            <p class="footer-h">Legal</p>
+            <div class="footer-col">
+              <a href="/terms" class="footer-link">Terms &amp; Conditions</a>
+              <a href="/privacy" class="footer-link">Privacy Policy</a>
+            </div>
+          </div>
+          <div>
+            <p class="footer-h">Z4 Technology</p>
+            <p class="footer-meta">
+              AI-powered business operations.<br />
+              Knoxville, TN<br />
+              <a href="mailto:support@z4technology.com">support@z4technology.com</a>
+            </p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copy">&copy; <span id="year"></span> Z4 Technology. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        "use strict";
+        var YEAR = document.getElementById("year");
+        if (YEAR) YEAR.textContent = new Date().getFullYear();
+
+        var SUPABASE_URL = "https://megchufjkmtvuxsesmnb.supabase.co";
+        var SUPABASE_ANON_KEY =
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1lZ2NodWZqa210dnV4c2VzbW5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0NDc4NzEsImV4cCI6MjA5NDAyMzg3MX0.7317iFAFb_mcVHec9QDpM331eVts-7iTnYzhEphwieU";
+
+        var form = document.getElementById("signupForm");
+        if (!form) return;
+
+        var errorBox = document.getElementById("errorBox");
+        var submitBtn = document.getElementById("submitBtn");
+
+        function setError(msg) {
+          errorBox.textContent = msg;
+          errorBox.style.display = msg ? "block" : "none";
+        }
+
+        form.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+
+          var name = document.getElementById("name").value.trim();
+          var email = document.getElementById("email").value.trim();
+          var phone = document.getElementById("phone").value.trim();
+          var company = document.getElementById("company").value.trim();
+
+          if (!name || !email || !phone || !company) {
+            setError("Please fill in all fields");
+            return;
+          }
+
+          setError("");
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Submitting...";
+
+          var payload = {
+            name: name,
+            email: email,
+            phone: phone,
+            company_name: company,
+            product: "ai-receptionist",
+            created_at: new Date().toISOString()
+          };
+
+          fetch(SUPABASE_URL + "/rest/v1/trial_signups", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: "Bearer " + SUPABASE_ANON_KEY,
+              Prefer: "return=minimal"
+            },
+            body: JSON.stringify(payload)
+          })
+            .then(function (res) {
+              if (!res.ok) throw new Error("Request failed (" + res.status + ")");
+              window.location.href = "/ai-agent/thank-you";
+            })
+            .catch(function () {
+              setError("Something went wrong. Please try again.");
+              submitBtn.disabled = false;
+              submitBtn.textContent = "Start Free Trial";
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>
