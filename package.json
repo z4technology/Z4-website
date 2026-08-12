@@ -9,14 +9,15 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.7",
-    "@tanstack/react-router": "^1.158.1",
+    "@tanstack/react-router": "1.170.18",
+    "@tanstack/router-core": "1.171.15",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "vite-tsconfig-paths": "^6.1.1"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
-    "@tanstack/router-vite-plugin": "^1.167.23",
+    "@tanstack/router-vite-plugin": "1.167.30",
     "@types/node": "^25.3.0",
     "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",

@@ -2,21 +2,26 @@ import { HeadContent, Outlet, Scripts, createRootRoute, Link } from "@tanstack/r
 import type { ReactNode } from "react";
 import appCss from "~/styles/app.css?url";
 
+// Hoisted to module scope so `head` returns a stable object reference on every
+// render. Returning a fresh object literal each call defeats TanStack's
+// deep-equal change detection and can feed an unbounded head-update loop.
+const rootHead = {
+  meta: [
+    { charSet: "utf-8" },
+    { name: "viewport", content: "width=device-width, initial-scale=1" },
+    { title: "Z4 Technology | AI-Powered Business Operations" },
+    {
+      name: "description",
+      content: "Performance-based AI implementation. We help businesses 10x revenue with AI voice agents, automation, and data solutions.",
+    },
+  ],
+  links: [
+    { rel: "stylesheet", href: appCss },
+  ],
+};
+
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Z4 Technology | AI-Powered Business Operations" },
-      {
-        name: "description",
-        content: "Performance-based AI implementation. We help businesses 10x revenue with AI voice agents, automation, and data solutions.",
-      },
-    ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-    ],
-  }),
+  head: () => rootHead,
   component: RootComponent,
 });
 
