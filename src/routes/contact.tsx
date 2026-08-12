@@ -1,8 +1,35 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { supabase } from "~/lib/supabase";
 
 export const Route = createFileRoute("/contact")({ component: ContactPage });
+
+// Direct REST insert — no supabase-js client, no auth auto-refresh loop on this page.
+const SUPABASE_URL = "https://megchufjkmtvuxsesmnb.supabase.co";
+const SUPABASE_ANON_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1lZ2NodWZqa210dnV4c2VzbW5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0NDc4NzEsImV4cCI6MjA5NDAyMzg3MX0.7317iFAFb_mcVHec9QDpM331eVts-7iTnYzhEphwieU";
+
+async function submitContact(data: {
+  name: string;
+  email: string;
+  phone: string | null;
+  business_name: string | null;
+  message: string;
+  sms_opt_in: boolean;
+}) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/contact_submissions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      Prefer: "return=minimal",
+    },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) {
+    throw new Error(`Request failed (${res.status})`);
+  }
+}
 
 function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", business: "", message: "" });
@@ -18,23 +45,21 @@ function ContactPage() {
     e.preventDefault();
     setStatus("sending");
     setErrorMsg("");
-
-    const { error } = await supabase.from("contact_submissions").insert({
-      name: form.name,
-      email: form.email,
-      phone: form.phone || null,
-      business_name: form.business || null,
-      message: form.message,
-      sms_opt_in: smsOptIn,
-    });
-
-    if (error) {
-      setStatus("error");
-      setErrorMsg(error.message);
-    } else {
+    try {
+      await submitContact({
+        name: form.name,
+        email: form.email,
+        phone: form.phone || null,
+        business_name: form.business || null,
+        message: form.message,
+        sms_opt_in: smsOptIn,
+      });
       setStatus("sent");
       setForm({ name: "", email: "", phone: "", business: "", message: "" });
       setSmsOptIn(false);
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong. Please try again.");
     }
   };
 
