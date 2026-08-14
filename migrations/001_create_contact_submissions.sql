@@ -40,3 +40,6 @@ CREATE POLICY "allow_auth_update" ON public.contact_submissions
 
 -- Add sms_opt_in column to existing table if it doesn't already exist
 ALTER TABLE public.contact_submissions ADD COLUMN IF NOT EXISTS sms_opt_in BOOLEAN DEFAULT FALSE NOT NULL;
+
+-- Add business_name column to existing table if it doesn't already exist
+ALTER TABLE public.contact_submissions ADD COLUMN IF NOT EXISTS business_name TEXT;
