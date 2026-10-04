@@ -188,8 +188,8 @@ const progress = document.getElementById('progress');
 const overlay = document.getElementById('play-overlay');
 
 const cues = [
-  { scene: 0, at: 0 }, { scene: 1, at: 7 }, { scene: 2, at: 16 },
-  { scene: 3, at: 28 }, { scene: 4, at: 40 }, { scene: 5, at: 50 }, { scene: 6, at: 58 }
+  { scene: 0, at: 0 }, { scene: 1, at: 7.32 }, { scene: 2, at: 19.04 },
+  { scene: 3, at: 33.16 }, { scene: 4, at: 47.92 }, { scene: 5, at: 59.64 }, { scene: 6, at: 71.36 }
 ];
 
 let currentScene = 0;
@@ -204,7 +204,7 @@ function startVSL() {
 }
 
 audio.addEventListener('timeupdate', () => {
-  progress.style.width = (audio.currentTime / (audio.duration || 75)) * 100 + '%';
+  progress.style.width = (audio.currentTime / (audio.duration || 77.4)) * 100 + '%';
   for (let i = cues.length-1; i >= 0; i--) {
     if (audio.currentTime >= cues[i].at) { if (currentScene !== i) showScene(i); break; }
   }
