@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Z4 Technology — AI Receptionist (Video)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: #0f172a;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    min-height: 100vh; min-height: 100dvh;
+    display: flex; flex-direction: column;
+  }
+  header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 18px 24px;
+  }
+  header .logo { font-size: 20px; font-weight: 900; color: #f8fafc; letter-spacing: -0.02em; }
+  header .logo span { color: #3b82f6; }
+  header .tag { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: #64748b; text-transform: uppercase; }
+  .stage {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 8px 16px 32px;
+  }
+  video {
+    width: 100%;
+    max-width: 960px;
+    max-height: calc(100vh - 140px);
+    background: #020617;
+    border-radius: 14px;
+    box-shadow: 0 24px 70px rgba(2,6,23,0.55);
+    outline: none;
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Z4<span>.</span></div>
+  <div class="tag">AI Receptionist — video</div>
+</header>
+<div class="stage">
+  <video controls playsinline preload="metadata" poster="" src="vsl-final.mp4"></video>
+</div>
+</body>
+</html>
