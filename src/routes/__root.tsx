@@ -47,36 +47,58 @@ function RootDocument({ children }: { children: ReactNode }) {
 function NavBar() {
   const [open, setOpen] = useState(false);
   const linkCls = "text-[11px] font-semibold tracking-[0.08em] text-slate-500 hover:text-slate-900 uppercase transition-colors";
+  const burger = (
+    <button
+      type="button"
+      onClick={() => setOpen(!open)}
+      aria-expanded={open}
+      aria-label="Toggle navigation menu"
+      className="md:hidden -ml-2 flex h-9 w-9 items-center justify-center rounded-lg text-slate-700 hover:bg-slate-200/70"
+    >
+      {open ? (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      ) : (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+      )}
+    </button>
+  );
+  const mobileLogo = (
+    <Link to="/" className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      <img src="/logo.png" alt="Z4 Technology" className="h-8 w-auto" />
+    </Link>
+  );
+  const panelLinks: { href: string; label: string; cls?: string }[] = [
+    { href: "/", label: "Home" },
+    { href: "/#services", label: "Services" },
+    { href: "/ai-agent", label: "AI Agent", cls: "text-blue-600" },
+    { href: "/showcase.html", label: "Showcase" },
+  ];
   return (
     <header className="fixed top-0 z-50 w-full nav-glass">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link to="/" className="flex items-center gap-2">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        {burger}
+        {mobileLogo}
+        <Link to="/" className="hidden items-center gap-2 md:flex">
           <img src="/logo.png" alt="Z4 Technology" className="h-8 w-auto" />
         </Link>
         <nav className="flex items-center gap-4 sm:gap-6">
-          <Link to="/" className={`${linkCls} hidden md:inline`}>Home</Link>
-          <a href="/#services" className={`${linkCls} hidden md:inline`}>Services</a>
-          <Link to="/ai-agent" className={`${linkCls} hidden md:inline text-blue-600 hover:text-blue-700`}>AI Agent</Link>
-          <a href="/showcase.html" className={`${linkCls} hidden md:inline`}>Showcase</a>
-          <button
-            type="button"
-            onClick={() => setOpen(!open)}
-            aria-expanded={open}
-            aria-label="Toggle navigation menu"
-            className="md:hidden text-[11px] font-bold tracking-[0.08em] text-slate-700 uppercase"
-          >
-            {open ? "Close" : "Menu"}
-          </button>
+          <div className="hidden items-center gap-6 md:flex">
+            <Link to="/" className={linkCls}>Home</Link>
+            <a href="/#services" className={linkCls}>Services</a>
+            <Link to="/ai-agent" className={`${linkCls} text-blue-600 hover:text-blue-700`}>AI Agent</Link>
+            <a href="/showcase.html" className={linkCls}>Showcase</a>
+          </div>
           <a href="/ai-agent/signup.html" className="btn-primary text-[10px] py-2 px-4">Get Started</a>
         </nav>
       </div>
       {open && (
-        <div className="md:hidden border-t border-slate-100 bg-white px-6 py-4">
-          <div className="flex flex-col gap-3">
-            <Link to="/" onClick={() => setOpen(false)} className={linkCls}>Home</Link>
-            <a href="/#services" onClick={() => setOpen(false)} className={linkCls}>Services</a>
-            <Link to="/ai-agent" onClick={() => setOpen(false)} className={`${linkCls} text-blue-600`}>AI Agent</Link>
-            <a href="/showcase.html" onClick={() => setOpen(false)} className={linkCls}>Showcase</a>
+        <div className="md:hidden absolute left-4 right-4 top-full z-50 mt-2 rounded-xl border border-slate-200 bg-white p-1.5 shadow-lg">
+          <div className="flex flex-col">
+            {panelLinks.map((l) => (
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className={`rounded-lg px-3 py-2.5 text-[12px] font-semibold tracking-[0.04em] text-slate-600 hover:bg-slate-50 hover:text-blue-600 ${l.cls ?? ""}`}>
+                {l.label}
+              </a>
+            ))}
           </div>
         </div>
       )}
