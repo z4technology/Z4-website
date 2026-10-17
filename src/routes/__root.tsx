@@ -1,5 +1,5 @@
 import { HeadContent, Outlet, Scripts, createRootRoute, Link } from "@tanstack/react-router";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import appCss from "~/styles/app.css?url";
 
 export const Route = createRootRoute({
@@ -45,20 +45,41 @@ function RootDocument({ children }: { children: ReactNode }) {
 }
 
 function NavBar() {
+  const [open, setOpen] = useState(false);
+  const linkCls = "text-[11px] font-semibold tracking-[0.08em] text-slate-500 hover:text-slate-900 uppercase transition-colors";
   return (
     <header className="fixed top-0 z-50 w-full nav-glass">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-2">
           <img src="/logo.png" alt="Z4 Technology" className="h-8 w-auto" />
         </Link>
-        <nav className="flex items-center gap-6">
-          <Link to="/" className="text-[11px] font-semibold tracking-[0.08em] text-slate-500 hover:text-slate-900 uppercase transition-colors">Home</Link>
-          <a href="/#services" className="text-[11px] font-semibold tracking-[0.08em] text-slate-500 hover:text-slate-900 uppercase transition-colors">Services</a>
-          <Link to="/ai-agent" className="text-[11px] font-semibold tracking-[0.08em] text-blue-600 hover:text-blue-700 uppercase transition-colors">AI Agent</Link>
-          <a href="/showcase.html" className="text-[11px] font-semibold tracking-[0.08em] text-slate-500 hover:text-slate-900 uppercase transition-colors">Showcase</a>
+        <nav className="flex items-center gap-4 sm:gap-6">
+          <Link to="/" className={`${linkCls} hidden md:inline`}>Home</Link>
+          <a href="/#services" className={`${linkCls} hidden md:inline`}>Services</a>
+          <Link to="/ai-agent" className={`${linkCls} hidden md:inline text-blue-600 hover:text-blue-700`}>AI Agent</Link>
+          <a href="/showcase.html" className={`${linkCls} hidden md:inline`}>Showcase</a>
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            aria-expanded={open}
+            aria-label="Toggle navigation menu"
+            className="md:hidden text-[11px] font-bold tracking-[0.08em] text-slate-700 uppercase"
+          >
+            {open ? "Close" : "Menu"}
+          </button>
           <a href="/ai-agent/signup.html" className="btn-primary text-[10px] py-2 px-4">Get Started</a>
         </nav>
       </div>
+      {open && (
+        <div className="md:hidden border-t border-slate-100 bg-white px-6 py-4">
+          <div className="flex flex-col gap-3">
+            <Link to="/" onClick={() => setOpen(false)} className={linkCls}>Home</Link>
+            <a href="/#services" onClick={() => setOpen(false)} className={linkCls}>Services</a>
+            <Link to="/ai-agent" onClick={() => setOpen(false)} className={`${linkCls} text-blue-600`}>AI Agent</Link>
+            <a href="/showcase.html" onClick={() => setOpen(false)} className={linkCls}>Showcase</a>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
