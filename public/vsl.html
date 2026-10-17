@@ -38,9 +38,81 @@
   .watermark { position: fixed; top: 20px; right: 24px; display: flex; align-items: center; gap: 8px; }
   .watermark .logo { font-size: 20px; font-weight: 900; color: rgba(255,255,255,0.6); }
   .watermark .tag { font-size: 9px; font-weight: 700; letter-spacing: 0.15em; color: rgba(255,255,255,0.3); text-transform: uppercase; }
+
+  /* fixed-nav offset for dark stage pages */
+      body { padding-top: 4.5rem; }
+      /* ── Glass nav ── */
+      .nav-glass {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 50; width: 100%;
+        background: rgba(255,255,255,0.92); backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-bottom: 0.5px solid rgba(37,99,235,0.08);}
+  .nav-inner { max-width: 80rem; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem;}
+  .nav-logo { display: flex; align-items: center; gap: 0.5rem;}
+  .nav-logo img { height: 2rem; width: auto;}
+  .nav-logo img { height: 2rem; width: auto;}
+  .nav-links { display: flex; align-items: center; gap: 1.5rem;}
+  .nav-links { display: flex; align-items: center; gap: 1.5rem;}
+  .nav-link { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate-500); transition: color .2s;}
+  .nav-link:hover { color: var(--slate-900);}
+  .nav-link.active { color: var(--blue-600);}
+  .nav-link:hover { color: var(--slate-900);}
+  .nav-link.active { color: var(--blue-600);}
+  /* ── Buttons ── */
+      .btn-primary {
+        display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+        padding: .875rem 2rem; font-size: .8125rem; font-weight: 600; letter-spacing: .06em;
+        text-transform: uppercase; color: #fff; background: var(--blue-600); border: none;
+        border-radius: 9999px; cursor: pointer;
+        transition: all .35s cubic-bezier(.25,.46,.45,.94);
+        box-shadow: 0 2px 8px rgba(37,99,235,.2), 0 1px 2px rgba(37,99,235,.12);}
+  .btn-primary:hover { background: var(--blue-700); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(37,99,235,.3);}
+  .btn-primary:disabled { opacity: .6; cursor: not-allowed; transform: none;}
+  .btn-primary:hover { background: var(--blue-700); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(37,99,235,.3);}
+  .btn-primary:disabled { opacity: .6; cursor: not-allowed; transform: none;}
+  /* ── Footer ── */
+      footer { border-top: 1px solid var(--slate-100); background: var(--slate-50);}
+  .footer-inner { max-width: 80rem; margin: 0 auto; padding: 3rem 1.5rem;}
+  .footer-grid { display: grid; gap: 2rem;}
+  .footer-grid { grid-template-columns: repeat(3, 1fr);}
+  .footer-h { font-size: 10px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--slate-400); margin-bottom: .75rem;}
+  .footer-col { display: flex; flex-direction: column; gap: .5rem;}
+  .footer-link { font-size: .75rem; color: var(--slate-500); transition: color .2s;}
+  .footer-link:hover { color: var(--slate-900);}
+  .footer-meta { font-size: .75rem; color: var(--slate-400); line-height: 1.625;}
+  .footer-meta a { color: var(--blue-600);}
+  .footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--slate-200); text-align: center;}
+  .footer-copy { font-size: 10px; color: var(--slate-400);}
+  .footer-inner { max-width: 80rem; margin: 0 auto; padding: 3rem 1.5rem;}
+  .footer-grid { display: grid; gap: 2rem;}
+  .footer-grid { grid-template-columns: repeat(3, 1fr);}
+  .footer-h { font-size: 10px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--slate-400); margin-bottom: .75rem;}
+  .footer-col { display: flex; flex-direction: column; gap: .5rem;}
+  .footer-link { font-size: .75rem; color: var(--slate-500); transition: color .2s;}
+  .footer-link:hover { color: var(--slate-900);}
+  .footer-link:hover { color: var(--slate-900);}
+  .footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--slate-200); text-align: center;}
+  .footer-copy { font-size: 10px; color: var(--slate-400);}
+  .footer-meta { font-size: .75rem; color: var(--slate-400); line-height: 1.625;}
+  .footer-meta a { color: var(--blue-600);}
+  .footer-meta a { color: var(--blue-600);}
 </style>
 </head>
 <body>
+    <header class="nav-glass">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <img src="/logo.png" alt="Z4 Technology" />
+        </a>
+        <nav class="nav-links">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/#services" class="nav-link">Services</a>
+          <a href="/ai-agent" class="nav-link">AI Agent</a>
+          <a href="/showcase.html" class="nav-link">Showcase</a>
+          <a href="/ai-agent/signup.html" class="btn-primary" style="font-size:10px; padding:.5rem 1rem;">Get Started</a>
+        </nav>
+      </div>
+    </header>
   <div class="watermark"><span class="logo">Z4</span><span class="tag">Technology</span></div>
   <div id="stage">
     <div class="wrap">
@@ -52,10 +124,43 @@
         Your browser does not support the video tag. Watch directly at <a href="/vsl/vsl-final-liam.mp4" style="color:#60a5fa">/vsl/vsl-final-liam.mp4</a>.
       </video>
       <div class="cta-row">
-        <a class="cta" href="/signup.html">Get Started — Free Pilot</a>
+        <a class="cta" href="/ai-agent/signup.html">Get Started — Free Pilot</a>
         <a class="cta ghost" href="/">Learn More</a>
       </div>
     </div>
   </div>
-</body>
+<footer>
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div>
+            <p class="footer-h">Company</p>
+            <div class="footer-col">
+              <a href="/" class="footer-link">Home</a>
+              <a href="/ai-agent" class="footer-link">AI Receptionist</a>
+              <a href="/showcase.html" class="footer-link">Showcase</a>
+              <a href="/contact.html" class="footer-link">Contact</a>
+            </div>
+          </div>
+          <div>
+            <p class="footer-h">Legal</p>
+            <div class="footer-col">
+              <a href="/terms" class="footer-link">Terms &amp; Conditions</a>
+              <a href="/privacy" class="footer-link">Privacy Policy</a>
+            </div>
+          </div>
+          <div>
+            <p class="footer-h">Z4 Technology</p>
+            <p class="footer-meta">
+              AI-powered business operations.<br />
+              Knoxville, TN<br />
+              <a href="mailto:support@z4technology.com">support@z4technology.com</a>
+            </p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copy">&copy; <span id="year"></span> Z4 Technology. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
