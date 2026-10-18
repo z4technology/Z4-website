@@ -63,7 +63,7 @@ function NavBar() {
     </button>
   );
   const mobileLogo = (
-    <Link to="/" className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+    <Link to="/" className="md:hidden absolute" style={{ left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}>
       <img src="/logo.png" alt="Z4 Technology" className="h-8 w-auto" />
     </Link>
   );
