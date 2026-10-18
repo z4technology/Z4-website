@@ -88,7 +88,7 @@ function NavBar() {
             <Link to="/ai-agent" className={`${linkCls} text-blue-600 hover:text-blue-700`}>AI Agent</Link>
             <a href="/showcase.html" className={linkCls}>Showcase</a>
           </div>
-          <a href="/ai-agent/signup.html" className="btn-primary text-[10px] py-2 px-4">Get Started</a>
+          <a href="/ai-agent/signup.html" className="btn-primary text-[10px] py-2 px-4" style={{ fontSize: "10px", padding: ".55rem 1rem" }}>Get Started</a>
         </nav>
       </div>
       {open && (
