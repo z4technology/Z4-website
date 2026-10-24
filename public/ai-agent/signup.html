@@ -193,6 +193,12 @@
             <div id="errorBox" class="status-error" style="display:none;"></div>
 
             <button type="submit" class="btn-primary block" id="submitBtn">Start Free Trial</button>
+            <div style="display:flex; gap:.65rem; align-items:flex-start; text-align:left;">
+              <input id="smsConsent" name="smsConsent" type="checkbox" style="margin-top:.15rem; width:auto; accent-color:#2563eb;" />
+              <label for="smsConsent" class="fine-print" style="cursor:pointer; margin:0;">
+                Yes — text me a confirmation at the number provided and follow up by SMS. I agree to receive messages from Z4 Technology; reply STOP to opt out. Consent is not a condition of purchase.
+              </label>
+            </div>
             <p class="fine-print">By signing up, you agree to our Terms of Service and Privacy Policy.</p>
           </form>
         </div>
@@ -241,9 +247,6 @@
         var YEAR = document.getElementById("year");
         if (YEAR) YEAR.textContent = new Date().getFullYear();
 
-        var SUPABASE_URL = "https://megchufjkmtvuxsesmnb.supabase.co";
-        var SUPABASE_ANON_KEY =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1lZ2NodWZqa210dnV4c2VzbW5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0NDc4NzEsImV4cCI6MjA5NDAyMzg3MX0.7317iFAFb_mcVHec9QDpM331eVts-7iTnYzhEphwieU";
 
         var form = document.getElementById("signupForm");
         if (!form) return;
@@ -273,23 +276,23 @@
           submitBtn.disabled = true;
           submitBtn.textContent = "Submitting...";
 
+          var smsConsent = document.getElementById("smsConsent").checked;
           var payload = {
-            name: name,
-            email: email,
+            name: company,
+            contact: name,
             phone: phone,
-            company_name: company,
-            product: "ai-receptionist",
-            created_at: new Date().toISOString()
+            email: email,
+            message: "Free week signup - AI Receptionist page. Contact: " + name + ".",
+            source: "ad-landing",
+            consent: { contact: true, sms: smsConsent, sms_ts: new Date().toISOString() },
+            consent_sms: smsConsent,
+            sms_opt_in: smsConsent,
+            source_ref: { company: company, product: "ai-receptionist", page: "/ai-agent/signup" }
           };
 
-          fetch(SUPABASE_URL + "/rest/v1/trial_signups", {
+          fetch("https://ops.z4technology.com/api/leads/ingest", {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              apikey: SUPABASE_ANON_KEY,
-              Authorization: "Bearer " + SUPABASE_ANON_KEY,
-              Prefer: "return=minimal"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
           })
             .then(function (res) {
